@@ -6,6 +6,8 @@ const path = require('path');
 function deleteNodeModules() {
   const nodeModulesPath = path.join(process.cwd(), 'node_modules');
 
+  console.log(`Attempting to delete: ${nodeModulesPath}`);
+
   fs.rm(nodeModulesPath, { recursive: true, force: true }, (err) => {
     if (err) {
       console.error(`Failed to delete node_modules: ${err.message}`);
