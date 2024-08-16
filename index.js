@@ -3,18 +3,19 @@
 const fs = require('fs');
 const path = require('path');
 
-function deleteNodeModules() {
-  const nodeModulesPath = path.join(process.cwd(), 'node_modules');
+const deleteFolderRecursive = function (folderPath) {
+  if (fs.existsSync(folderPath)) {
+    fs.readdirSync(folderPath).forEach((file) => {
+      const currentPath = path.join(folderPath, file);
+      if (fs.lstatSync(currentPath).isDirectory()) {
+        deleteFolderRecursive(currentPath);
+      } else {
+        fs.unlinkSync(currentPath);
+      }
+    });
+    fs.rmdirSync(folderPath);
+  }
+};
 
-  console.log(`Attempting to delete: ${nodeModulesPath}`);
-
-  fs.rm(nodeModulesPath, { recursive: true, force: true }, (err) => {
-    if (err) {
-      console.error(`Failed to delete node_modules: ${err.message}`);
-    } else {
-      console.log('node_modules directory has been deleted successfully.');
-    }
-  });
-}
-
-module.exports = deleteNodeModules;
+deleteFolderRecursive('node_modules');
+console.log('🧹✨node_modules folder deleted successfully.');
