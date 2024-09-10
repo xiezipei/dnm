@@ -1,5 +1,5 @@
 {
-  "name": "@xzp2077/dnm",
+  "name": "@xzp-libs/dnm",
   "version": "1.0.3",
   "description": "A simple tool to delete the node_modules directory in the current project.",
   "main": "index.js",
