@@ -30,3 +30,4 @@ dnm
 - [ ] Convert to TypeScript
 - [ ] Support multilingual documentation and execution prompts
 - [ ] Add statistics badges
+- [ ] Change name to "node-modules-killer"
